@@ -54,7 +54,7 @@ char Mapa2[latime][lungime] =
 	"#                                                                                                                      #",
 	"#                                                                                                                      #",
 	"#                                                                                                                      #",
-	"#                                                                                                                      #",
+	"#                     @                                                                                                #",
 	"#                                                                                                                      #",
 	"#                                                                                                                      #",
 	"#                                                                                                                      #",
@@ -125,6 +125,107 @@ int main()
 		Sleep(3000);
 	}
 
+
+	while (RUNgame==true && _player2 == true)
+	{
+		system("cls");
+		for (int i = 0; i<latime; i++)
+		{
+			cout << Mapa2[i] << endl;
+		}
+		for (int i = 0; i<latime; i++)
+		{
+			for (int j = 0; j<lungime; j++)
+			{
+				switch (Mapa2[i][j])
+				{
+				case '#':
+				{
+					Mapa2[i][j] = 219;
+				}
+				break;
+				case '@':
+				{
+
+					if (GetAsyncKeyState(VK_UP) != 0)
+					{
+						int i1 = i - 1;
+						switch (Mapa2[i1][j])
+						{
+						case ' ':
+						{
+							Mapa2[i][j] = ' ';
+							i--;
+							Mapa2[i1][j] = '@';
+						}
+						break;
+						}
+					}
+					if (GetAsyncKeyState(VK_DOWN) != 0)
+					{
+						int i1 = i + 1;
+						switch (Mapa2[i1][j])
+						{
+						case ' ':
+						{
+							Mapa2[i][j] = ' ';
+							i++;
+							Mapa2[i1][j] = '@';
+						}
+						break;
+						}
+					}
+					if (GetAsyncKeyState(VK_RIGHT) != 0)
+					{
+						int j1 = j + 1;
+						switch (Mapa2[i][j1])
+						{
+						case ' ':
+						{
+							Mapa2[i][j] = ' ';
+							j++;
+							Mapa2[i][j1] = '@';
+						}
+						break;
+						}
+					}
+					if (GetAsyncKeyState(VK_LEFT) != 0)
+					{
+						int j1 = j - 1;
+						switch (Mapa2[i][j1])
+						{
+						case ' ':
+						{
+							Mapa2[i][j] = ' ';
+							j--;
+							Mapa2[i][j1] = '@';
+						}
+
+						break;
+						}
+					}
+					if (GetAsyncKeyState(0x50) != 0)
+					{
+						cout << ' ' << "PAUSE" << ' ' << endl;
+						system("pause");
+					}
+					if (GetAsyncKeyState(VK_ESCAPE) != 0)
+					{
+						cout << ' ' << "Exit game?" << endl;
+						cout << ' ' << "1.Yes" << ' ' << "2.No" << endl;
+						system("pause");
+						if (GetAsyncKeyState(0x31) != 0)
+							return 0;
+						if (GetAsyncKeyState(0x32) != 0)
+							break;
+					}
+				}
+				break;
+				}
+			}
+		}
+		Sleep(gameSpeed);
+	}
 
 
 
